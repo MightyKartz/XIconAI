@@ -277,11 +277,7 @@ struct CustomColorPickerView: View {
             }
         }
         .padding()
-        .background(
-            colorScheme == .dark ?
-                Material.thin :
-                Material.regular
-        )
+        .background(Color(NSColor.controlBackgroundColor))
         .cornerRadius(12)
         .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
         .onAppear {
@@ -319,11 +315,7 @@ struct SelectedColorPreview: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
-        .background(
-            colorScheme == .dark ?
-                Material.thin :
-                Material.regular
-        )
+        .background(Color(NSColor.controlBackgroundColor))
         .cornerRadius(8)
     }
 }

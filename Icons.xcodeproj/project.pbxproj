@@ -29,9 +29,22 @@
 		56232F4E2E72B178001F8B87 /* IconsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IconsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5610A4612E78089700BCE991 /* Exceptions for "Icons" folder in "Icons" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 56232F352E72B178001F8B87 /* Icons */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		56232F382E72B178001F8B87 /* Icons */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5610A4612E78089700BCE991 /* Exceptions for "Icons" folder in "Icons" target */,
+			);
 			path = Icons;
 			sourceTree = "<group>";
 		};
@@ -401,7 +414,8 @@
 				DEVELOPMENT_TEAM = K9K3YXMQN2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Icons/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -428,7 +442,8 @@
 				DEVELOPMENT_TEAM = K9K3YXMQN2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Icons/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

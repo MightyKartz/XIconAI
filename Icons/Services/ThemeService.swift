@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AppKit
 
 // MARK: - Theme Service
 class ThemeService: ObservableObject {
@@ -83,6 +84,13 @@ class ThemeService: ObservableObject {
             userDefaults.set(customColorsData, forKey: customColorsKey)
         }
     }
+}
+
+// MARK: - Material Types for Liquid Glass Effect
+enum Material {
+    case regular
+    case liquidGlass
+    case darkLiquidGlass
 }
 
 // MARK: - App Theme
@@ -194,12 +202,55 @@ struct ThemeEnvironmentKey: EnvironmentKey {
 // MARK: - ThemeService Extensions
 extension ThemeService {
     /// Get appropriate material based on current theme and color scheme
-    func getAppropriateMaterial() -> Material {
+    func getAppropriateMaterial() -> Color {
         switch (currentTheme, getColorScheme()) {
         case (.dark, _), (_, .dark):
-            return Material.thin
+            return Color(NSColor.controlBackgroundColor)
         default:
-            return Material.regular
+            return Color(NSColor.controlBackgroundColor)
+        }
+    }
+
+    /// Get Liquid Glass material based on current theme
+    func getLiquidGlassMaterial() -> Material {
+        switch (currentTheme, getColorScheme()) {
+        case (.dark, _), (_, .dark):
+            // Dark mode uses dark Liquid Glass effect
+            return Material.darkLiquidGlass
+        default:
+            // Light mode uses standard Liquid Glass effect
+            return Material.liquidGlass
+        }
+    }
+
+    /// Get Liquid Glass background with proper transparency and blur
+    func getLiquidGlassBackground() -> some View {
+        Group {
+            if currentTheme == .light || (currentTheme == .system && getColorScheme() != .dark) {
+                // Light mode Liquid Glass effect
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.white.opacity(0.7))  // 增加不透明度以提高文本对比度
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.white.opacity(0.5), lineWidth: 1)  // 增加边框不透明度
+                    )
+                    .background(
+                        BlurView(material: .hudWindow)
+                            .opacity(0.6)  // 稍微增加模糊效果的不透明度
+                    )
+            } else {
+                // Dark mode Liquid Glass effect
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.black.opacity(0.35))  // 稍微减少不透明度以提高文本对比度
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.white.opacity(0.2), lineWidth: 1)  // 增加边框不透明度
+                    )
+                    .background(
+                        BlurView(material: .hudWindow)
+                            .opacity(0.75)  // 稍微增加模糊效果的不透明度
+                    )
+            }
         }
     }
 
@@ -259,7 +310,7 @@ extension View {
         self
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Material.regular)
+                    .fill(Color(NSColor.controlBackgroundColor))
             )
             .cornerRadius(10)
             .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
@@ -287,5 +338,24 @@ extension ThemeService {
             customColors.customAccentColor = nil
         }
         saveThemeSettings()
+    }
+}
+
+// MARK: - Blur View for Liquid Glass Effect
+struct BlurView: NSViewRepresentable {
+    var material: NSVisualEffectView.Material
+    var blendingMode: NSVisualEffectView.BlendingMode = .behindWindow
+
+    func makeNSView(context: Context) -> NSVisualEffectView {
+        let view = NSVisualEffectView()
+        view.material = material
+        view.blendingMode = blendingMode
+        view.state = .active
+        return view
+    }
+
+    func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
+        nsView.material = material
+        nsView.blendingMode = blendingMode
     }
 }

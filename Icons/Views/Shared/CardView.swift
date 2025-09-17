@@ -7,19 +7,35 @@ struct CardView<Content: View>: View {
     var description: String?
     var footer: String?
     var content: Content
+    var useLiquidGlass: Bool = false
 
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.themeService) var themeService
+    @Environment(\.layoutService) var layoutService
 
     init(
         title: String? = nil,
         description: String? = nil,
         footer: String? = nil,
+        useLiquidGlass: Bool = false,
         @ViewBuilder content: () -> Content
     ) {
         self.title = title
         self.description = description
         self.footer = footer
+        self.useLiquidGlass = useLiquidGlass
         self.content = content()
+    }
+
+    var shouldUseLiquidGlass: Bool {
+        // 如果明确指定使用Liquid Glass，则使用
+        // 否则根据LayoutService设置和当前主题决定
+        if useLiquidGlass {
+            return true
+        }
+
+        // 在启用Liquid Glass效果时，无论浅色还是深色模式都使用
+        return layoutService.enableLiquidGlassEffect
     }
 
     var body: some View {
@@ -31,7 +47,7 @@ struct CardView<Content: View>: View {
                         if let title = title {
                             Text(title)
                                 .font(.title2)
-                                .fontWeight(.medium)
+                                .fontWeight(.semibold)  // 增强标题字体重量以提高可读性
                                 .foregroundStyle(.primary)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
@@ -55,12 +71,13 @@ struct CardView<Content: View>: View {
                         .font(.caption)
                         .foregroundStyle(.tertiary)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .accessibilityHint("卡片页脚信息")  // 添加辅助功能提示
                 }
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 18)
         }
-        .groupBoxStyle(CardGroupBoxStyle())
+        .groupBoxStyle(AnyGroupBoxStyle(shouldUseLiquidGlass))
     }
 }
 
@@ -73,7 +90,7 @@ struct CardGroupBoxStyle: GroupBoxStyle {
             // Label (if provided)
             configuration.label
                 .font(.headline)
-                .foregroundStyle(Color(NSColor.labelColor))
+                .foregroundStyle(.primary)
 
             // Content with proper styling
             configuration.content
@@ -81,11 +98,7 @@ struct CardGroupBoxStyle: GroupBoxStyle {
                 .padding(.vertical, 14)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(
-                            colorScheme == .dark ?
-                                Material.thin :
-                                Material.regular
-                        )
+                        .fill(Color(NSColor.controlBackgroundColor))
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -96,6 +109,39 @@ struct CardGroupBoxStyle: GroupBoxStyle {
                             lineWidth: 1
                         )
                 )
+        }
+    }
+}
+
+/// Liquid Glass GroupBox style for cards with macOS 26 effect
+struct LiquidGlassCardGroupBoxStyle: GroupBoxStyle {
+    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.themeService) var themeService
+
+    func makeBody(configuration: Configuration) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            // Label (if provided)
+            configuration.label
+                .font(.headline)
+                .foregroundStyle(.primary)
+
+            // Content with Liquid Glass styling
+            configuration.content
+                .padding(.horizontal, 16)
+                .padding(.vertical, 14)
+                .background(
+                    themeService.getLiquidGlassBackground()
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(
+                            colorScheme == .dark ?
+                                Color.white.opacity(0.25) :  // 增加深色模式下的边框不透明度
+                                Color.white.opacity(0.6),   // 增加浅色模式下的边框不透明度
+                            lineWidth: 1
+                        )
+                )
+                .cornerRadius(16)
         }
     }
 }
@@ -139,8 +185,46 @@ struct CardView_Previews: PreviewProvider {
                 Text("Simple card with no title or description")
                     .font(.body)
             }
+
+            CardView(
+                title: "Liquid Glass Card",
+                description: "This card uses the new Liquid Glass effect for macOS 26",
+                useLiquidGlass: true
+            ) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("This card demonstrates the Liquid Glass effect.")
+                        .font(.body)
+
+                    Button("Glass Button") {
+                        print("Glass button tapped!")
+                    }
+                    .primaryStyle()
+                }
+            }
         }
+        .environment(\.themeService, ThemeService.shared)
         .padding()
         .frame(width: 400)
+    }
+}
+
+/// Type-erased GroupBox style wrapper
+struct AnyGroupBoxStyle: GroupBoxStyle {
+    private let _makeBody: (Configuration) -> AnyView
+
+    init(_ useLiquidGlass: Bool) {
+        if useLiquidGlass {
+            _makeBody = { configuration in
+                AnyView(LiquidGlassCardGroupBoxStyle().makeBody(configuration: configuration))
+            }
+        } else {
+            _makeBody = { configuration in
+                AnyView(CardGroupBoxStyle().makeBody(configuration: configuration))
+            }
+        }
+    }
+
+    func makeBody(configuration: Configuration) -> some View {
+        _makeBody(configuration)
     }
 }

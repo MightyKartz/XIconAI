@@ -263,11 +263,7 @@ struct SpacingControlView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(
-                    colorScheme == .dark ?
-                        Material.thin :
-                        Material.regular
-                )
+                .fill(Color(NSColor.controlBackgroundColor))
                 .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
         )
         .onAppear {
@@ -296,11 +292,7 @@ struct SpacingInputView: View {
                 TextField("", value: $value, formatter: NumberFormatter())
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(width: 60)
-                    .background(
-                        colorScheme == .dark ?
-                            Material.thin :
-                            Material.regular
-                    )
+                    .background(Color(NSColor.controlBackgroundColor))
 
                 Text("px")
                     .font(.caption)

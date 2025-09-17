@@ -56,11 +56,7 @@ struct ThemeToggleView: View {
         .padding(8)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(
-                    colorScheme == .dark ?
-                        Material.thin :
-                        Material.regular
-                )
+                .fill(Color(NSColor.controlBackgroundColor))
                 .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
         )
     }
@@ -128,9 +124,7 @@ struct ThemeToggleButton: View {
         } else if isHovered {
             return Color(NSColor.controlAccentColor).opacity(colorScheme == .dark ? 0.15 : 0.12)
         } else {
-            return colorScheme == .dark ?
-                Material.thin :
-                Material.regular
+            return Color(NSColor.controlBackgroundColor)
         }
     }
 
@@ -150,6 +144,48 @@ struct SimpleCardExample: View {
             footer: "卡片底部信息"
         ) {
             Text("CardView 组件支持标题、描述和自定义内容区域，非常适合展示各种类型的信息。")
+        }
+    }
+}
+
+// MARK: - Liquid Glass 示例组件
+
+/// Liquid Glass 卡片示例 - 展示如何使用 Liquid Glass 效果的 CardView 组件
+struct LiquidGlassCardExample: View {
+    var body: some View {
+        CardView(
+            title: "Liquid Glass 卡片示例",
+            description: "这是一个使用 Liquid Glass 效果的 CardView 组件创建的示例卡片。",
+            useLiquidGlass: true
+        ) {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Liquid Glass 效果为 macOS 26 带来了全新的视觉体验。")
+
+                Button("Liquid Glass 按钮") {}
+                    .primaryStyle()
+                    .environment(\.liquidGlassEffect, true)
+            }
+        }
+    }
+}
+
+/// 主题感知的 Liquid Glass 视图容器
+struct LiquidGlassContainer<Content: View>: View {
+    let content: Content
+    @Environment(\.colorScheme) var colorScheme
+
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+
+    var body: some View {
+        Group {
+            if colorScheme == .light {
+                content
+                    .environment(\.liquidGlassEffect, true)
+            } else {
+                content
+            }
         }
     }
 }

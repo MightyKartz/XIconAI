@@ -834,7 +834,25 @@ struct SettingsView: View {
                 AnimationControlPanel()
                     .environmentObject(interactionService)
                     .environmentObject(themeService)
-                
+
+                Divider()
+
+                // Liquid Glass 效果设置
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("视觉效果")
+                        .font(.subheadline)
+                        .fontWeight(.medium)
+
+                    Toggle("启用 Liquid Glass 效果", isOn: $layoutService.enableLiquidGlassEffect)
+                        .font(.callout)
+                        .padding(.vertical, 2)
+
+                    Text("在浅色模式下启用 Liquid Glass 材料效果，为界面带来现代化的视觉体验。")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+
                 Spacer()
             }
             .padding()

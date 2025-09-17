@@ -65,7 +65,7 @@ struct MainNavigationView: View {
             ScrollView {
                 LazyVStack(spacing: 4) {
                     // 只显示必要的导航选项
-                    ForEach([NavigationTab.generate, NavigationTab.history, NavigationTab.settings], id: \.self) { tab in
+                    ForEach([NavigationTab.generate, NavigationTab.history, NavigationTab.settings, NavigationTab.liquidGlass], id: \.self) { tab in
                         NavigationTabButton(
                             tab: tab,
                             isSelected: appState.selectedTab == tab
@@ -120,6 +120,8 @@ struct MainNavigationView: View {
                     HistoryView()
                 case .settings:
                     SettingsView()
+                case .liquidGlass:
+                    LiquidGlassValidationView()
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -241,6 +243,8 @@ struct DetailView: View {
                 HistoryView()
             case .settings:
                 SettingsView()
+            case .liquidGlass:
+                LiquidGlassValidationView()
             case .sfSymbols:
                 // SF Symbols 浏览视图
                 SFSymbolsView()
