@@ -34,7 +34,7 @@ export default function HomePage() {
                 <Sparkles className="h-6 w-6" />
               </div>
               <span className="text-xl font-bold text-gray-900 dark:text-white">
-                Icons
+                XIconAI
               </span>
             </div>
 
@@ -240,7 +240,7 @@ export default function HomePage() {
                 <Sparkles className="h-4 w-4" />
               </div>
               <span className="text-sm text-gray-600 dark:text-gray-300">
-                Icons - 免费AI图标生成工具
+                XIconAI - 免费AI图标生成工具
               </span>
             </div>
 
@@ -270,7 +270,7 @@ export default function HomePage() {
 
           <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
             <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-              © 2024 Icons. 基于 MIT 许可证开源。
+              © 2024 XIconAI. 基于 MIT 许可证开源。
             </p>
           </div>
         </div>

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Icons AI Icon Generation Backend
+XIconAI AI Icon Generation Backend
 免费开源版本的AI图标生成API服务
 """
 
@@ -33,7 +33,7 @@ logger = logging.getLogger(__name__)
 
 # 初始化FastAPI应用
 app = FastAPI(
-    title="Icons AI API",
+    title="XIconAI AI API",
     description="免费开源AI图标生成API",
     version="1.0.0",
     docs_url="/docs",
@@ -441,12 +441,12 @@ async def get_provider_models(provider: str):
 # 启动事件
 @app.on_event("startup")
 async def startup_event():
-    logger.info("Icons AI API服务启动")
+    logger.info("XIconAI AI API服务启动")
     logger.info(f"支持的CORS源: {origins}")
 
 @app.on_event("shutdown")
 async def shutdown_event():
-    logger.info("Icons AI API服务关闭")
+    logger.info("XIconAI AI API服务关闭")
 
 # 运行服务器
 if __name__ == "__main__":

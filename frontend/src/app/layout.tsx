@@ -5,12 +5,12 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Icons - 免费AI图标生成工具',
+  title: 'XIconAI - 免费AI图标生成工具',
   description: '多平台AI图标生成工具，支持OpenAI、Anthropic、Stability AI等多种AI提供商',
   keywords: 'AI图标生成,图标设计,OpenAI,Anthropic,Stability AI,免费工具',
   authors: [{ name: 'MightyKartz' }],
   creator: 'MightyKartz',
-  publisher: 'Icons',
+  publisher: 'XIconAI',
   formatDetection: {
     email: false,
     address: false,
@@ -21,16 +21,16 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Icons - 免费AI图标生成工具',
+    title: 'XIconAI - 免费AI图标生成工具',
     description: '多平台AI图标生成工具，支持多种AI提供商',
     url: 'https://icons-demo.vercel.app',
-    siteName: 'Icons',
+    siteName: 'XIconAI',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Icons AI图标生成工具',
+        alt: 'XIconAI AI图标生成工具',
       },
     ],
     locale: 'zh_CN',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Icons - 免费AI图标生成工具',
+    title: 'XIconAI - 免费AI图标生成工具',
     description: '多平台AI图标生成工具，支持多种AI提供商',
     images: ['/og-image.png'],
   },
