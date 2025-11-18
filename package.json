@@ -8,6 +8,5 @@
     "start": "cd frontend && npm start",
     "lint": "cd frontend && npm run lint",
     "type-check": "cd frontend && npm run type-check"
-  },
-  "workspaces": ["frontend"]
+  }
 }
