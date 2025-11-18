@@ -1,8 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8787'
+const IS_DEMO_MODE = process.env.NEXT_PUBLIC_DEMO_MODE === 'true'
+
+// 演示模式的内存存储
+let demoConfig: any = null
 
 export async function GET(request: NextRequest) {
+  if (IS_DEMO_MODE) {
+    if (demoConfig) {
+      return NextResponse.json({
+        ...demoConfig,
+        apiKey: '' // 不返回实际的API密钥
+      })
+    }
+    return NextResponse.json(
+      { error: '未找到配置' },
+      { status: 404 }
+    )
+  }
+
   try {
     const response = await fetch(`${API_BASE_URL}/v1/config`, {
       headers: {
@@ -29,9 +46,15 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  try {
-    const body = await request.json()
+  const body = await request.json()
 
+  // 演示模式直接保存到内存
+  if (IS_DEMO_MODE) {
+    demoConfig = { ...body, apiKey: '***demo***' }
+    return NextResponse.json({ success: true })
+  }
+
+  try {
     const response = await fetch(`${API_BASE_URL}/v1/config`, {
       method: 'POST',
       headers: {
@@ -60,6 +83,12 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  // 演示模式直接清除内存
+  if (IS_DEMO_MODE) {
+    demoConfig = null
+    return NextResponse.json({ success: true })
+  }
+
   try {
     const response = await fetch(`${API_BASE_URL}/v1/config`, {
       method: 'DELETE',
