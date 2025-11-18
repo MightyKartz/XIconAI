@@ -8,7 +8,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:8787
+      - NEXT_PUBLIC_API_BASE_URL=http://localhost:8787/v1
       - NEXT_PUBLIC_APP_NAME=Icons
     depends_on:
       - backend
@@ -24,9 +24,16 @@ services:
     ports:
       - "8787:8787"
     environment:
-      - PORT=8787
-      - CORS_ORIGINS=http://localhost:3000
-      - DEFAULT_PROVIDER=modelscope
+      - ICONS_POC_HOST=0.0.0.0
+      - ICONS_POC_PORT=8787
+      - MODELSCOPE_API_KEY=${MODELSCOPE_API_KEY:-ms-f051cff4-82df-494a-9460-c30275e685b9}
+      - DASHSCOPE_API_KEY=${DASHSCOPE_API_KEY}
+      - DASHSCOPE_BASE_URL=https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation
+      - MODELSCOPE_API_BASE=https://api-inference.modelscope.cn/v1
+      - DASHSCOPE_T2I_MODEL=qwen-image-plus
+      - MODELSCOPE_T2I_MODEL=Qwen/Qwen-Image
+      - ICONS_IP_RPM_LIMIT=30
+      - ICONS_POINTS_COST_PER_IMAGE=1
     volumes:
       - ./backend:/app
       - ./backend/static:/app/static

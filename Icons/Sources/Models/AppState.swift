@@ -62,7 +62,7 @@ class AppState: ObservableObject {
     func clearAPIConfig() {
         UserDefaults.standard.removeObject(forKey: "encryptedAPIConfig")
         self.apiConfig = nil
-        self.isConfigified = false
+        self.isConfigured = false
     }
 
     func testAPIConnection(_ config: APIConfig) async -> Bool {
