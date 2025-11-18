@@ -17,8 +17,6 @@ class AIProviderFactory {
             return OpenAIProvider(config: config)
         case .anthropic:
             return AnthropicProvider(config: config)
-        case .modelscope:
-            return ModelScopeProvider(config: config)
         case .stability:
             return StabilityProvider(config: config)
         case .google:

@@ -11,7 +11,6 @@ import Foundation
 enum AIProvider: String, CaseIterable, Codable {
     case openai = "openai"
     case anthropic = "anthropic"
-    case modelscope = "modelscope"
     case stability = "stability"
     case google = "google"
     case custom = "custom"
@@ -22,8 +21,6 @@ enum AIProvider: String, CaseIterable, Codable {
             return "OpenAI"
         case .anthropic:
             return "Anthropic"
-        case .modelscope:
-            return "ModelScope"
         case .stability:
             return "Stability AI"
         case .google:
@@ -39,8 +36,6 @@ enum AIProvider: String, CaseIterable, Codable {
             return ["dall-e-3", "dall-e-2"]
         case .anthropic:
             return ["claude-3-vision"]
-        case .modelscope:
-            return ["Qwen-Image", "flux-dev"]
         case .stability:
             return ["stable-diffusion-xl", "stable-diffusion-3"]
         case .google:
@@ -52,8 +47,6 @@ enum AIProvider: String, CaseIterable, Codable {
 
     var isFree: Bool {
         switch self {
-        case .modelscope:
-            return true
         default:
             return false
         }

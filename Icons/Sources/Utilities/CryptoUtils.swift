@@ -62,8 +62,6 @@ struct CryptoUtils {
             return key.hasPrefix("sk-") && key.count >= 20
         case .anthropic:
             return key.hasPrefix("sk-ant-") && key.count >= 30
-        case .modelscope:
-            return key.count >= 20
         case .stability:
             return key.count >= 20
         case .google:

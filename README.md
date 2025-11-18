@@ -19,7 +19,6 @@
 ### 🤖 多AI提供商支持
 - **OpenAI**: DALL-E 3, GPT-4 Vision
 - **Anthropic**: Claude 3 Vision
-- **ModelScope**: Qwen-Image (免费)
 - **Stability AI**: Stable Diffusion
 - **Google**: Gemini Vision
 - **Hugging Face**: 开源模型
@@ -120,15 +119,6 @@ open Icons.xcodeproj
 }
 ```
 
-#### ModelScope（免费）
-```json
-{
-  "provider": "modelscope",
-  "apiKey": "ms-f051cff4-82df-494a-9460-c30275e685b9",
-  "model": "Qwen/Qwen-Image"
-}
-```
-
 ### 环境变量
 
 ```bash
@@ -137,7 +127,7 @@ PORT=8787
 CORS_ORIGINS=http://localhost:3000
 
 # 可选：默认API配置
-DEFAULT_PROVIDER=modelscope
+DEFAULT_PROVIDER=openai
 DEFAULT_API_KEY=your-api-key
 ```
 

@@ -6,8 +6,8 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Icons - 免费AI图标生成工具',
-  description: '多平台AI图标生成工具，支持OpenAI、Anthropic、ModelScope等多种AI提供商',
-  keywords: 'AI图标生成,图标设计,OpenAI,Anthropic,ModelScope,免费工具',
+  description: '多平台AI图标生成工具，支持OpenAI、Anthropic、Stability AI等多种AI提供商',
+  keywords: 'AI图标生成,图标设计,OpenAI,Anthropic,Stability AI,免费工具',
   authors: [{ name: 'MightyKartz' }],
   creator: 'MightyKartz',
   publisher: 'Icons',

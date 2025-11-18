@@ -66,7 +66,7 @@ export default function HomePage() {
               免费AI图标生成工具
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-              支持多种AI提供商，包括OpenAI、Anthropic、ModelScope等。
+              支持多种AI提供商，包括OpenAI、Anthropic、Stability AI等。
               完全免费开源，数据本地存储，保护您的隐私。
             </p>
 

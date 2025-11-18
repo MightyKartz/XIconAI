@@ -23,9 +23,9 @@ interface Provider {
 
 export default function ConfigPage() {
   const [config, setConfig] = useState<APIConfig>({
-    provider: 'modelscope',
+    provider: 'openai',
     apiKey: '',
-    model: 'Qwen/Qwen-Image',
+    model: 'dall-e-3',
     baseUrl: '',
     maxTokens: 1000,
     temperature: 0.7,

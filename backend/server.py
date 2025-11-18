@@ -181,79 +181,6 @@ class AnthropicAdapter(AIProviderAdapter):
             logger.error(f"Anthropic连接测试失败: {e}")
             return False
 
-class ModelScopeAdapter(AIProviderAdapter):
-    """ModelScope适配器"""
-
-    async def generate_image(self, request: GenerationRequest) -> Dict[str, Any]:
-        headers = {
-            "Authorization": f"Bearer {self.config.apiKey}",
-            "Content-Type": "application/json"
-        }
-
-        payload = {
-            "model": self.config.model or "Qwen/Qwen-Image",
-            "input": {
-                "prompt": request.prompt,
-                "negative_prompt": request.negativePrompt,
-                "width": int(request.size.split("x")[0]),
-                "height": int(request.size.split("x")[1]),
-                "num_inference_steps": 50
-            }
-        }
-
-        try:
-            response = await self.client.post(
-                f"{self.config.baseUrl or 'https://api-inference.modelscope.cn'}/v1/images/generations",
-                headers=headers,
-                json=payload
-            )
-            response.raise_for_status()
-            result = response.json()
-
-            # ModelScope可能返回任务ID，需要轮询结果
-            if "task_id" in result:
-                return await self._poll_task_result(result["task_id"])
-
-            return result
-        except httpx.HTTPStatusError as e:
-            logger.error(f"ModelScope API错误: {e.response.status_code} - {e.response.text}")
-            raise HTTPException(status_code=e.response.status_code, detail=f"ModelScope API错误: {e.response.text}")
-
-    async def _poll_task_result(self, task_id: str, max_attempts: int = 30) -> Dict[str, Any]:
-        """轮询任务结果"""
-        for attempt in range(max_attempts):
-            try:
-                response = await self.client.get(
-                    f"{self.config.baseUrl or 'https://api-inference.modelscope.cn'}/v1/tasks/{task_id}",
-                    headers={"Authorization": f"Bearer {self.config.apiKey}"}
-                )
-
-                if response.status_code == 200:
-                    result = response.json()
-                    if result.get("status") == "succeeded":
-                        return result
-                    elif result.get("status") == "failed":
-                        raise HTTPException(status_code=500, detail=f"图像生成失败: {result.get('error', '未知错误')}")
-
-                await asyncio.sleep(2)
-            except Exception as e:
-                logger.error(f"轮询任务结果失败: {e}")
-                if attempt == max_attempts - 1:
-                    raise HTTPException(status_code=500, detail="获取生成结果超时")
-
-        raise HTTPException(status_code=500, detail="任务超时")
-
-    async def test_connection(self) -> bool:
-        try:
-            headers = {"Authorization": f"Bearer {self.config.apiKey}"}
-            response = await self.client.get(
-                f"{self.config.baseUrl or 'https://api-inference.modelscope.cn'}/v1/models",
-                headers=headers
-            )
-            return response.status_code == 200
-        except Exception as e:
-            logger.error(f"ModelScope连接测试失败: {e}")
-            return False
 
 # 提供商工厂
 def create_provider(provider: str, config: APIConfig) -> AIProviderAdapter:
@@ -261,7 +188,6 @@ def create_provider(provider: str, config: APIConfig) -> AIProviderAdapter:
     providers = {
         "openai": OpenAIAdapter,
         "anthropic": AnthropicAdapter,
-        "modelscope": ModelScopeAdapter,
     }
 
     if provider not in providers:
@@ -495,13 +421,6 @@ async def get_supported_providers():
                 "models": ["claude-3-opus-20240229", "claude-3-sonnet-20240229"],
                 "description": "强大的多模态AI",
                 "pricing": "付费"
-            },
-            {
-                "id": "modelscope",
-                "name": "ModelScope",
-                "models": ["Qwen/Qwen-Image"],
-                "description": "免费的图像生成服务",
-                "pricing": "免费"
             }
         ]
     }
@@ -511,8 +430,7 @@ async def get_provider_models(provider: str):
     """获取特定提供商的可用模型"""
     models = {
         "openai": ["dall-e-3", "dall-e-2"],
-        "anthropic": ["claude-3-opus-20240229", "claude-3-sonnet-20240229", "claude-3-haiku-20240307"],
-        "modelscope": ["Qwen/Qwen-Image", "AI-ModelScope/stable-diffusion-v1-5"]
+        "anthropic": ["claude-3-opus-20240229", "claude-3-sonnet-20240229", "claude-3-haiku-20240307"]
     }
 
     if provider not in models:
