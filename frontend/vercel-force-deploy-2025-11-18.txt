@@ -1,0 +1,23 @@
+VERCEL FORCE DEPLOY - MIGHTYKARTZ ACCOUNT
+Date: 2025-11-18 04:15:00 UTC
+Account: mightykartz
+Repository: https://github.com/MightyKartz/XIconAI.git
+Branch: main
+Commit: 16971d2
+
+CRITICAL DEPLOYMENT INSTRUCTIONS:
+1. Connect Vercel account "mightykartz" to GitHub repo "MightyKartz/XIconAI"
+2. Use MAIN branch (not legacy-commercial-version)
+3. Set environment variables:
+   - NEXT_PUBLIC_DEMO_MODE=true
+   - NEXT_PUBLIC_API_URL=https://xiconai.com
+   - NEXT_PUBLIC_APP_NAME=XIconAI Demo
+   - NEXT_PUBLIC_BUILD_VERSION=2.0.1
+
+EXPECTED RESULT:
+- Homepage shows XIconAI with red v2.0.1 badge
+- All API endpoints work (/api/version, /api/providers, /api/demo)
+- Complete demo functionality operational
+
+ISSUE: Previous deployments showed "完美图标计划预览" instead of XIconAI
+SOLUTION: Fresh deployment with correct branch and environment config
