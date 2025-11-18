@@ -1,23 +1,10 @@
 {
-  "version": 2,
   "env": {
     "NEXT_PUBLIC_DEMO_MODE": "true",
     "NEXT_PUBLIC_API_URL": "https://xiconai.com",
     "NEXT_PUBLIC_APP_NAME": "XIconAI Demo",
     "NEXT_PUBLIC_BUILD_VERSION": "2.0.1"
   },
-  "build": {
-    "env": {
-      "NEXT_PUBLIC_DEMO_MODE": "true"
-    }
-  },
-  "functions": {
-    "app/api/**/*.ts": {
-      "maxDuration": 30
-    }
-  },
-  "installCommand": "npm install",
   "buildCommand": "npm run build",
-  "outputDirectory": ".next",
   "framework": "nextjs"
 }

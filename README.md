@@ -64,7 +64,7 @@
 
 1. **访问在线演示**
    ```
-   https://icons-demo.vercel.app
+   https://xiconai.vercel.app
    ```
 
 2. **配置API密钥**

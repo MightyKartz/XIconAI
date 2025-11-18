@@ -74,9 +74,9 @@ http://localhost:3000/api/providers - 返回AI提供商列表
 ### 🔄 生产验证 (等待中)
 ```bash
 # 生产环境 (一旦Vercel部署完成)
-https://icons-demo.vercel.app/ - 应显示XIconAI + v2.0.1红色徽章
-https://icons-demo.vercel.app/api/version - 应返回版本信息
-https://icons-demo.vercel.app/api/providers - 应返回AI提供商列表
+https://xiconai.vercel.app/ - 应显示XIconAI + v2.0.1红色徽章
+https://xiconai.vercel.app/api/version - 应返回版本信息
+https://xiconai.vercel.app/api/providers - 应返回AI提供商列表
 ```
 
 ## 🚀 技术实现亮点
