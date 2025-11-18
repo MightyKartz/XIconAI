@@ -1,5 +1,7 @@
 'use client'
-// Version: 2.0 - Production deployment fix
+// Version: 2.0.1 - CRITICAL FIX - 2025-11-18 03:35:00 UTC
+// PRODUCTION DEPLOYMENT EMERGENCY FIX
+// Vercel Deployment Issue Resolution
 
 import { useState, useEffect } from 'react'
 import { Sparkles, Settings, Download, Zap, Shield, Globe } from 'lucide-react'
@@ -36,6 +38,9 @@ export default function HomePage() {
               </div>
               <span className="text-xl font-bold text-gray-900 dark:text-white">
                 XIconAI
+              </span>
+              <span className="ml-2 px-2 py-1 text-xs font-bold text-white bg-red-500 rounded-full animate-pulse">
+                v2.0.1
               </span>
             </div>
 
