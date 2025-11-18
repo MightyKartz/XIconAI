@@ -4,14 +4,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "IconsFree",
+    name: "XIconAI",
     platforms: [
         .macOS(.v13)
     ],
     products: [
         .executable(
-            name: "IconsFree",
-            targets: ["IconsFree"]
+            name: "XIconAI",
+            targets: ["XIconAI"]
         )
     ],
     dependencies: [
@@ -42,7 +42,7 @@ let package = Package(
     ],
     targets: [
         .executableTarget(
-            name: "IconsFree",
+            name: "XIconAI",
             dependencies: [
                 "Alamofire",
                 "AnyCodable",
@@ -59,9 +59,9 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "IconsFreeTests",
+            name: "XIconAITests",
             dependencies: [
-                "IconsFree",
+                "XIconAI",
                 "Quick",
                 "Nimble"
             ],

@@ -1,8 +1,8 @@
-# Icons - 免费开源AI图标生成工具
+# XIconAI - 免费开源AI图标生成工具
 
 <div align="center">
 
-![Icons Logo](https://img.shields.io/badge/Icons-AI%20Icon%20Generator-blue?style=for-the-badge&logo=artstation)
+![XIconAI Logo](https://img.shields.io/badge/XIconAI-AI%20Icon%20Generator-blue?style=for-the-badge&logo=artstation)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/MightyKartz/icons.svg?style=social&label=Star)](https://github.com/MightyKartz/icons)
@@ -88,7 +88,7 @@
 #### 1. 克隆仓库
 ```bash
 git clone https://github.com/MightyKartz/icons.git
-cd icons
+cd XIconAI
 ```
 
 #### 2. 启动后端
@@ -170,16 +170,16 @@ DEFAULT_API_KEY=your-api-key
 
 ```bash
 # 构建镜像
-docker build -t icons .
+docker build -t xiconai .
 
 # 运行容器
-docker run -p 8787:8787 -e API_KEY=your-key icons
+docker run -p 8787:8787 -e API_KEY=your-key xiconai
 ```
 
 ## 📁 项目结构
 
 ```
-icons/
+XIconAI/
 ├── frontend/              # React前端应用
 │   ├── src/
 │   │   ├── components/    # UI组件
