@@ -15,11 +15,16 @@ export default function HomePage() {
     const checkConfig = async () => {
       try {
         const response = await fetch('/api/config')
-        if (response.ok) {
+        const data = await response.json()
+
+        // 在演示模式下，如果有配置数据就认为已配置
+        if (response.ok && (!data.error)) {
           setIsConfigured(true)
         }
       } catch (error) {
-        console.log('未配置API')
+        console.log('配置检查失败:', error)
+        // 在演示模式下，默认显示配置按钮
+        setIsConfigured(false)
       }
     }
 

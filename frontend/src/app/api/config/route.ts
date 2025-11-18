@@ -8,16 +8,21 @@ let demoConfig: any = null
 
 export async function GET(request: NextRequest) {
   if (IS_DEMO_MODE) {
+    // 演示模式下，如果没有配置就返回默认配置，让用户能看到完整界面
     if (demoConfig) {
       return NextResponse.json({
         ...demoConfig,
         apiKey: '' // 不返回实际的API密钥
       })
     }
-    return NextResponse.json(
-      { error: '未找到配置' },
-      { status: 404 }
-    )
+
+    // 返回默认的演示配置
+    return NextResponse.json({
+      provider: 'openai',
+      model: 'dall-e-3',
+      apiKey: 'demo-key',
+      configured: true
+    })
   }
 
   try {
