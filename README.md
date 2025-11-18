@@ -7,10 +7,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/MightyKartz/icons.svg?style=social&label=Star)](https://github.com/MightyKartz/icons)
 [![GitHub forks](https://img.shields.io/github/forks/MightyKartz/icons.svg?style=social&label=Fork)](https://github.com/MightyKartz/icons)
+[![App Store](https://img.shields.io/badge/App%20Store-XIconAI%20Studio-black.svg?style=flat-square&logo=apple&logoColor=white)](https://apps.apple.com/cn/app/xiconai-studio/id6754810915?mt=12)
 
 **🎨 多平台AI图标生成工具 - 支持多种AI提供商，完全免费开源**
 
-[功能特点](#功能特点) • [快速开始](#快速开始) • [配置指南](#配置指南) • [部署说明](#部署说明)
+[功能特点](#功能特点) • [快速开始](#快速开始) • [配置指南](#配置指南) • [部署说明](#部署说明) • [App Store专业版](#app-store专业版)
 
 </div>
 
@@ -27,6 +28,7 @@
 ### 🖥️ 全平台支持
 - **Web应用**: React + TypeScript，响应式设计
 - **macOS应用**: 原生Swift应用，完整功能
+- **App Store应用**: [XIconAI Studio](https://apps.apple.com/cn/app/xiconai-studio/id6754810915?mt=12) - 官方macOS应用，优化体验
 - **API服务**: FastAPI后端，高性能
 
 ### 🎯 核心功能
@@ -44,6 +46,19 @@
 - 开源透明，可自部署
 
 ## 🚀 快速开始
+
+### 🏆 App Store版本（最简单）
+
+[![Download on App Store](https://img.shields.io/badge/Download-App%20Store-black.svg?style=for-the-badge&logo=apple&logoColor=white)](https://apps.apple.com/cn/app/xiconai-studio/id6754810915?mt=12)
+
+1. **下载应用**
+   - 点击上方按钮或搜索 "XIconAI Studio"
+   - 直接从 Mac App Store 安装
+
+2. **即开即用**
+   - 无需配置环境
+   - 内置多种AI提供商
+   - 自动更新和优化
 
 ### Web版本（推荐）
 
@@ -181,13 +196,15 @@ icons/
 │   │   └── services/     # 业务逻辑
 │   ├── requirements.txt
 │   └── server.py
-├── Icons/                 # macOS应用
+├── Icons/                 # macOS应用（开源版本）
 │   ├── Sources/
 │   │   ├── Views/        # SwiftUI视图
 │   │   ├── Services/     # 服务层
 │   │   ├── Models/       # 数据模型
 │   │   └── Utilities/    # 工具类
 │   └── Package.swift
+├── XIconAI-Studio/        # App Store应用（商业版本）
+│   └── [📱 App Store链接](https://apps.apple.com/cn/app/xiconai-studio/id6754810915?mt=12)
 ├── docs/                  # 文档
 └── docker/               # Docker配置
 ```
@@ -279,6 +296,33 @@ const results = await batchGenerate(prompts);
 - 感谢所有AI提供商提供的优秀服务
 - 感谢开源社区的支持和贡献
 - 特别感谢所有测试用户和反馈者
+
+## 🏅 App Store专业版
+
+### [XIconAI Studio](https://apps.apple.com/cn/app/xiconai-studio/id6754810915?mt=12)
+
+📖 **详细信息**: 查看 [完整介绍文档](./APP_STORE.md)
+
+<div align="center">
+
+[![Download on App Store](https://img.shields.io/badge/Download-App%20Store-black.svg?style=for-the-badge&logo=apple&logoColor=white)](https://apps.apple.com/cn/app/xiconai-studio/id6754810915?mt=12)
+
+**🎯 为什么选择 App Store 版本？**
+
+✅ **一键安装** - 无需配置环境，即装即用
+✅ **自动更新** - 始终享受最新功能和优化
+✅ **专业优化** - 针对macOS深度优化的用户体验
+✅ **安全可靠** - 通过App Store审核，安全有保障
+✅ **技术支持** - 优先获得技术支持和问题解决
+✅ **高级功能** - 包含额外的专业功能和工具
+
+**🚀 适合人群**
+- 专业设计师和开发者
+- 需要稳定生产环境的用户
+- 希望获得最佳体验的用户
+- 企业和商业用途
+
+</div>
 
 ## 📞 联系我们
 
