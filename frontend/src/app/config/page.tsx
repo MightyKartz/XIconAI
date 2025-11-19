@@ -287,7 +287,7 @@ export default function ConfigPage() {
                     type="text"
                     value={config.model}
                     onChange={(e) => setConfig(prev => ({ ...prev, model: e.target.value }))}
-                    placeholder="输入模型ID，如：Qwen/Qwen-Image, AI-ModelScope/flux-schnell"
+                    placeholder="输入模型ID"
                     className={`input w-full ${
                       !config.model?.trim() ? 'border-red-300 focus:border-red-500' : ''
                     }`}
@@ -296,7 +296,7 @@ export default function ConfigPage() {
                   <div className="mt-2">
                     <p className="text-xs text-gray-500 mb-1">常用模型示例：</p>
                     <div className="flex flex-wrap gap-1">
-                      {['Qwen/Qwen-Image', 'AI-ModelScope/flux-schnell', 'AI-ModelScope/stable-diffusion-v1-5', 'gpt-4', 'dall-e-3'].map((model) => (
+                      {['gpt-4', 'dall-e-3'].map((model) => (
                         <button
                           key={model}
                           type="button"
@@ -348,11 +348,7 @@ export default function ConfigPage() {
                     type="url"
                     value={config.baseUrl || ''}
                     onChange={(e) => setConfig(prev => ({ ...prev, baseUrl: e.target.value }))}
-                    placeholder={
-                      config.provider === 'custom'
-                        ? "https://api-inference.modelscope.cn/v1"
-                        : "留空使用默认URL"
-                    }
+                    placeholder="留空使用默认URL"
                     className={`input w-full ${
                       config.provider === 'custom' && !config.baseUrl?.trim()
                         ? 'border-red-300 focus:border-red-500'
@@ -360,12 +356,7 @@ export default function ConfigPage() {
                     }`}
                     required={config.provider === 'custom'}
                   />
-                  {config.provider === 'custom' && (
-                    <p className="text-xs text-gray-500 mt-1">
-                      ModelScope: https://api-inference.modelscope.cn/v1
-                    </p>
-                  )}
-                </div>
+                                  </div>
 
                 {/* 最大Token数 */}
                 <div>
