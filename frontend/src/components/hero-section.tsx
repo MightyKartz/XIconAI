@@ -53,12 +53,12 @@ export function HeroSection() {
   ]
 
   return (
-    <section className="relative overflow-hidden py-20 sm:py-32">
+    <section className="relative overflow-hidden py-16 sm:py-24">
       {/* Background Gradient - 匹配功能卡片颜色 */}
       <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-white dark:from-background dark:via-gray-900/20 dark:to-background" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="text-center space-y-8">
+        <div className="text-center space-y-6">
           {/* Version Badge */}
           <div className="flex justify-center">
             <Badge variant="secondary" className="animate-pulse">
@@ -68,158 +68,151 @@ export function HeroSection() {
           </div>
 
           {/* Main Heading */}
-          <div className="space-y-4">
-            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl animate-fade-in">
+          <div className="space-y-3">
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl animate-fade-in">
               AI图标生成
               <span className="block text-primary gradient-text">创意工具</span>
             </h1>
-            <p className="mx-auto max-w-2xl text-xl text-muted-foreground sm:text-2xl">
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed">
               支持多种AI提供商，完全免费开源，数据本地存储，保护您的隐私。
               一键生成高质量图标，让创意变为现实。
             </p>
           </div>
 
-          {/* App Store Promotion */}
-          <div className="bg-gradient-to-br from-white via-gray-50 to-white border border-gray-200 rounded-2xl p-8 max-w-5xl mx-auto shadow-xl hover:shadow-2xl transition-all duration-500">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              {/* Left: App Info */}
-              <div className="flex flex-col items-center space-y-6">
+          {/* App Store Promotion - 优化后更紧凑的布局 */}
+          <div className="bg-gradient-to-br from-white via-gray-50 to-white border border-gray-200 rounded-2xl p-6 max-w-4xl mx-auto shadow-lg hover:shadow-xl transition-all duration-500">
+            <div className="grid md:grid-cols-2 gap-6 items-center">
+              {/* Left: App Info - 紧凑布局 */}
+              <div className="flex flex-col items-center space-y-4">
                 {/* App Icon and Title */}
-                <div className="flex flex-col items-center space-y-4">
-                  <div className="bg-gradient-to-br from-black via-gray-800 to-black p-4 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
-                    <Apple className="h-8 w-8 text-white" />
+                <div className="flex items-center gap-4">
+                  <div className="bg-gradient-to-br from-black to-gray-800 p-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <Apple className="h-6 w-6 text-white" />
                   </div>
-                  <div className="text-center space-y-2">
-                    <h2 className="text-3xl font-bold text-gray-900 tracking-tight">XIconAI Studio</h2>
-                    <p className="text-lg text-gray-600 font-medium">专业级macOS图标生成应用</p>
+                  <div className="text-left">
+                    <h2 className="text-2xl font-bold text-gray-900 tracking-tight">XIconAI Studio</h2>
+                    <p className="text-sm text-gray-600 font-medium">专业级macOS图标生成应用</p>
                   </div>
                 </div>
 
-                {/* Features List */}
-                <div className="w-full max-w-sm">
-                  <div className="space-y-3">
+                {/* Features List - 优化间距和文字大小 */}
+                <div className="w-full flex justify-center">
+                  <div className="space-y-2">
                     {[
-                      { icon: Zap, text: "原生Swift开发，极致性能体验", color: "blue" },
-                      { icon: Shield, text: "离线本地生成，数据隐私安全", color: "green" },
-                      { icon: Star, text: "批量导出功能，高级定制选项", color: "purple" },
-                      { icon: Globe, text: "App Store官方认证应用", color: "orange" }
+                      { icon: Zap, text: "原生Swift开发，极致性能", color: "blue" },
+                      { icon: Shield, text: "离线本地生成，隐私安全", color: "green" },
+                      { icon: Star, text: "批量导出，高级定制", color: "purple" },
+                      { icon: Globe, text: "App Store官方认证", color: "orange" }
                     ].map((feature, index) => (
-                      <div key={index} className="flex items-center gap-3 group text-left">
-                        <div className={`bg-gradient-to-br from-${feature.color}-50 to-${feature.color}-100 rounded-xl p-2 flex-shrink-0 shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-110`}>
-                          <feature.icon className={`h-4 w-4 text-${feature.color}-600`} />
+                      <div key={index} className="flex items-center gap-3 text-left">
+                        <div className={`bg-gradient-to-br from-${feature.color}-50 to-${feature.color}-100 rounded-lg p-1.5 flex-shrink-0 shadow-sm`}>
+                          <feature.icon className={`h-3.5 w-3.5 text-${feature.color}-600`} />
                         </div>
-                        <span className="text-gray-700 text-sm font-semibold group-hover:text-gray-900 transition-colors duration-300">{feature.text}</span>
+                        <span className="text-gray-700 text-sm font-medium">{feature.text}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Download Button */}
-                <div className="w-full max-w-sm">
-                  <Button
-                    className="w-full bg-gradient-to-r from-black via-gray-800 to-black hover:from-gray-800 hover:via-gray-700 hover:to-black text-white px-8 py-4 text-sm font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-                    asChild
+                {/* Download Button - 调整宽度与文字大小 */}
+                <Button
+                  size="sm"
+                  className="bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black text-white px-4 py-2 text-base font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  asChild
+                >
+                  <a
+                    href="https://apps.apple.com/cn/app/xiconai-studio/id6754810915?mt=12"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center"
                   >
-                    <a
-                      href="https://apps.apple.com/cn/app/xiconai-studio/id6754810915?mt=12"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center"
-                    >
-                      <Download className="mr-2 h-5 w-5" />
-                      App Store下载
-                    </a>
-                  </Button>
-                </div>
+                    <Download className="mr-2 h-4 w-4" />
+                    App Store 下载
+                  </a>
+                </Button>
               </div>
 
-              {/* Right: Features Grid */}
-              <div className="space-y-6">
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { icon: Smartphone, color: "blue", title: "原生性能", desc: "Swift原生开发", bg: "from-blue-50 to-blue-100" },
-                    { icon: Shield, color: "green", title: "离线安全", desc: "数据不外传", bg: "from-green-50 to-green-100" },
-                    { icon: Zap, color: "purple", title: "专业功能", desc: "高级定制", bg: "from-purple-50 to-purple-100" },
-                    { icon: Star, color: "orange", title: "用户好评", desc: "高评分推荐", bg: "from-orange-50 to-orange-100" }
-                  ].map((item, index) => (
-                    <div key={index} className={`bg-gradient-to-br ${item.bg} rounded-2xl p-6 text-center space-y-3 border border-${item.color}-200 hover:border-${item.color}-300 transition-all duration-300 hover:shadow-lg hover:scale-105`}>
-                      <div className={`bg-${item.color}-100 w-12 h-12 rounded-2xl flex items-center justify-center mx-auto shadow-md`}>
-                        <item.icon className={`h-6 w-6 text-${item.color}-600`} />
-                      </div>
-                      <h4 className="font-bold text-gray-900 text-base">{item.title}</h4>
-                      <p className="text-gray-600 text-sm font-medium">{item.desc}</p>
+              {/* Right: Features Grid - 紧凑布局 */}
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { icon: Smartphone, color: "blue", title: "原生性能", desc: "Swift开发", bg: "from-blue-50 to-blue-100" },
+                  { icon: Shield, color: "green", title: "离线安全", desc: "数据不外传", bg: "from-green-50 to-green-100" },
+                  { icon: Zap, color: "purple", title: "专业功能", desc: "高级定制", bg: "from-purple-50 to-purple-100" },
+                  { icon: Star, color: "orange", title: "用户好评", desc: "高评分推荐", bg: "from-orange-50 to-orange-100" }
+                ].map((item, index) => (
+                  <div key={index} className={`bg-gradient-to-br ${item.bg} rounded-xl p-4 text-center space-y-2 border border-${item.color}-200 hover:border-${item.color}-300 transition-all duration-300 hover:shadow-md hover:scale-105`}>
+                    <div className={`bg-${item.color}-100 w-10 h-10 rounded-xl flex items-center justify-center mx-auto shadow-sm`}>
+                      <item.icon className={`h-5 w-5 text-${item.color}-600`} />
                     </div>
-                  ))}
-                </div>
+                    <h4 className="font-bold text-gray-900 text-sm">{item.title}</h4>
+                    <p className="text-gray-600 text-xs font-medium">{item.desc}</p>
+                  </div>
+                ))}
 
-                {/* Rating */}
-                <div className="bg-gradient-to-br from-yellow-50 via-orange-50 to-yellow-50 rounded-2xl p-6 text-center space-y-3 border-2 border-yellow-300 shadow-lg">
+                {/* Rating - 紧凑的评分展示 */}
+                <div className="col-span-2 bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-4 text-center space-y-2 border border-yellow-300 shadow-md">
                   <div className="flex items-center justify-center gap-1">
                     {[1,2,3,4,5].map((star) => (
-                      <Star key={star} className="h-6 w-6 text-yellow-500 fill-current drop-shadow-sm" />
+                      <Star key={star} className="h-5 w-5 text-yellow-500 fill-current" />
                     ))}
                   </div>
-                  <p className="text-lg font-bold text-gray-800">App Store官方认证</p>
-                  <p className="text-base text-gray-600 font-medium">用户信赖的专业应用</p>
-                  <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
-                    <Globe className="h-4 w-4" />
-                    <span>全球可用</span>
-                  </div>
+                  <p className="text-base font-bold text-gray-800">App Store官方认证</p>
+                  <p className="text-sm text-gray-600">用户信赖的专业应用</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          {/* CTA Buttons - 优化间距和布局 */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-8">
             {isConfigured ? (
-              <Button size="lg" className="text-base px-8 py-3" asChild>
+              <Button size="lg" className="text-base px-6 py-2.5 font-medium" asChild>
                 <Link href="/generate">
-                  <Sparkles className="mr-2 h-5 w-5" />
+                  <Sparkles className="mr-2 h-4 w-4" />
                   开始生成图标
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             ) : (
-              <Button size="lg" className="text-base px-8 py-3" asChild>
+              <Button size="lg" className="text-base px-6 py-2.5 font-medium" asChild>
                 <Link href="/config">
-                  <Settings className="mr-2 h-5 w-5" />
+                  <Settings className="mr-2 h-4 w-4" />
                   配置API密钥
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             )}
 
-            <Button variant="outline" size="lg" className="text-base px-8 py-3" asChild>
+            <Button variant="outline" size="lg" className="text-base px-6 py-2.5 font-medium" asChild>
               <Link href="/docs">
                 查看文档
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mt-16">
+          {/* Stats - 优化间距和字体大小 */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mt-12">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl font-bold text-primary">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-2xl font-bold text-primary">{stat.value}</div>
+                <div className="text-xs text-muted-foreground font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
 
-          {/* Feature Cards */}
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-20">
+          {/* Feature Cards - 优化间距和布局 */}
+          <div className="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto mt-16">
             {features.map((feature, index) => (
-              <Card key={index} className="relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-4 mx-auto">
-                    <feature.icon className="h-6 w-6" />
+              <Card key={index} className="relative overflow-hidden border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <CardContent className="p-5">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary mb-3 mx-auto">
+                    <feature.icon className="h-5 w-5" />
                   </div>
-                  <h3 className="text-lg font-semibold mb-2 text-foreground">
+                  <h3 className="text-base font-semibold mb-2 text-foreground">
                     {feature.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-muted-foreground text-xs leading-relaxed">
                     {feature.description}
                   </p>
                 </CardContent>
@@ -227,18 +220,18 @@ export function HeroSection() {
             ))}
           </div>
 
-          {/* Trust Indicators */}
-          <div className="flex flex-wrap justify-center items-center gap-8 mt-16 text-muted-foreground text-sm">
-            <div className="flex items-center gap-2">
-              <Shield className="h-4 w-4" />
+          {/* Trust Indicators - 优化间距 */}
+          <div className="flex flex-wrap justify-center items-center gap-6 mt-12 text-muted-foreground text-xs">
+            <div className="flex items-center gap-1.5">
+              <Shield className="h-3.5 w-3.5" />
               <span>隐私优先</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Globe className="h-4 w-4" />
+            <div className="flex items-center gap-1.5">
+              <Globe className="h-3.5 w-3.5" />
               <span>全球可用</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Star className="h-4 w-4" />
+            <div className="flex items-center gap-1.5">
+              <Star className="h-3.5 w-3.5" />
               <span>开源免费</span>
             </div>
           </div>
